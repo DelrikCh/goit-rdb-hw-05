@@ -1,0 +1,20 @@
+use csv;
+
+drop function if exists divide;
+
+delimiter $$
+create function divide(param1 float, param2 float)
+    returns float
+    deterministic
+begin
+	if param2 = 0 then
+		return null;
+	end if;
+    return param1/param2;
+end$$
+delimiter ;
+
+select
+	*,
+	divide(quantity, 2.0) as 'divided'
+from order_details;

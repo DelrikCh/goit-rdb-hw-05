@@ -1,0 +1,9 @@
+use csv;
+
+select
+	tmp.order_id,
+    avg(tmp.quantity)
+from
+	(select * from order_details where quantity > 10) as tmp
+group by
+	tmp.order_id;
